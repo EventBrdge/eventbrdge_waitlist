@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "DM Serif Display", serif;
+  --font-heading: "Syne", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+
+  --color-forest-50: #EEF5F0;
+  --color-forest-100: #D6E8DA;
+  --color-forest-400: #40916C;
+  --color-forest-600: #2D6A4F;
+  --color-forest-800: #1B4332;
+  --color-forest-900: #14532d;
+
+  --color-gold-100: #F0EBD8;
+  --color-gold-400: #D4B86A;
+  --color-gold-500: #C9A84C;
+
+  --color-danger: #DC2626;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: #1B4332;
+  color: #FFFFFF;
+}
+
+.dark ::selection {
+  background-color: #C9A84C;
+  color: #0A0A18;
+}
