@@ -1,45 +1,60 @@
 import { useState } from 'react'
+import { useWaitlist } from '../context/WaitlistContext'
+
+const API_URL = 'https://eventbrdge-waitlist-production.up.railway.app/waitlist'
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+
+const ROLE_MAP = { host: 'client', planner: 'planner' }
 
 export default function WaitlistForm({ variant = 'default' }) {
   const [email, setEmail] = useState('')
   const [role, setRole] = useState('host')
-  const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const { showToast } = useWaitlist()
 
   const inv = variant === 'footer'
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
 
-    if (!email || !email.includes('@') || !email.includes('.')) {
+    const trimmed = email.trim().toLowerCase()
+    if (!trimmed || !EMAIL_RE.test(trimmed)) {
       setError('Please enter a valid email address.')
       return
     }
 
-    const entry = { email, role, timestamp: new Date().toISOString() }
-    console.log(entry)
+    setSubmitting(true)
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: trimmed, role: ROLE_MAP[role] }),
+      })
 
-    const existing = JSON.parse(localStorage.getItem('eventbridge_waitlist') || '[]')
-    existing.push(entry)
-    localStorage.setItem('eventbridge_waitlist', JSON.stringify(existing))
+      if (!res.ok) {
+        const body = await res.json().catch(() => null)
+        const raw = body?.error?.message || 'Something went wrong. Please try again.'
+        throw new Error(raw.charAt(0).toUpperCase() + raw.slice(1))
+      }
 
-    setSubmitted(true)
-    setEmail('')
-  }
-
-  if (submitted) {
-    return (
-      <div className={`flex items-center gap-3 py-5 ${inv ? 'justify-center' : ''}`}>
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" className="shrink-0">
-          <circle cx="11" cy="11" r="11" className={inv ? 'fill-gold-500' : 'fill-forest-800 dark:fill-gold-500'} />
-          <path d="M6.5 11.5L9.5 14.5L15.5 8" className={inv ? 'stroke-forest-900' : 'stroke-white dark:stroke-[#0C0C0E]'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        <p className={`font-body text-[13px] sm:text-[14px] font-medium ${inv ? 'text-white dark:text-gold-400' : 'text-forest-800 dark:text-gold-400'}`}>
-          You're on the list. We'll be in touch soon.
-        </p>
-      </div>
-    )
+      setEmail('')
+      showToast({
+        type: 'success',
+        title: "You're on the list",
+        message: "We'll be in touch soon.",
+      })
+    } catch (err) {
+      const msg = err.message === 'Failed to fetch'
+        ? 'Network error. Check your connection and try again.'
+        : err.message
+      setError(msg)
+      showToast({ type: 'error', title: 'Sign-up failed', message: msg })
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const toggleActive = inv
@@ -78,9 +93,8 @@ export default function WaitlistForm({ variant = 'default' }) {
             role="radio"
             aria-checked={role === 'host'}
             onClick={() => setRole('host')}
-            className={`flex-1 py-[9px] sm:py-[10px] px-3 sm:px-4 text-[12px] sm:text-[13px] font-body font-semibold rounded-full transition-all duration-200 cursor-pointer ${
-              role === 'host' ? toggleActive : toggleInactive
-            }`}
+            className={`flex-1 py-[9px] sm:py-[10px] px-3 sm:px-4 text-[12px] sm:text-[13px] font-body font-semibold rounded-full transition-all duration-200 cursor-pointer ${role === 'host' ? toggleActive : toggleInactive
+              }`}
           >
             I'm a Host
           </button>
@@ -89,9 +103,8 @@ export default function WaitlistForm({ variant = 'default' }) {
             role="radio"
             aria-checked={role === 'planner'}
             onClick={() => setRole('planner')}
-            className={`flex-1 py-[9px] sm:py-[10px] px-3 sm:px-4 text-[12px] sm:text-[13px] font-body font-semibold rounded-full transition-all duration-200 cursor-pointer ${
-              role === 'planner' ? toggleActive : toggleInactive
-            }`}
+            className={`flex-1 py-[9px] sm:py-[10px] px-3 sm:px-4 text-[12px] sm:text-[13px] font-body font-semibold rounded-full transition-all duration-200 cursor-pointer ${role === 'planner' ? toggleActive : toggleInactive
+              }`}
           >
             I'm an Event Planner
           </button>
@@ -112,8 +125,8 @@ export default function WaitlistForm({ variant = 'default' }) {
               aria-describedby={error ? `error-${variant}` : undefined}
             />
           </div>
-          <button type="submit" className={submitClass}>
-            Request Early Access
+          <button type="submit" disabled={submitting} className={`${submitClass} disabled:opacity-60 disabled:cursor-not-allowed`}>
+            {submitting ? 'Submitting…' : 'Request Early Access'}
           </button>
         </div>
 
