@@ -24,7 +24,7 @@ const problems = [
   {
     title: 'Everything lives in WhatsApp chaos.',
     description:
-      'Contracts, receipts, mood boards, vendor contacts -- scattered across chats, emails, and voice notes.',
+      'Contracts, receipts, mood boards, vendor contacts. Scattered across chats, emails, and voice notes.',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -35,13 +35,13 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section className="py-[56px] sm:py-[72px] md:py-[96px] lg:py-[112px] px-5 sm:px-6 lg:px-8 bg-[#F7F7F7] dark:bg-[#111113]">
+    <section className="py-[56px] sm:py-[72px] md:py-[96px] lg:py-[112px] px-5 sm:px-6 lg:px-8 bg-surface-alt dark:bg-[#111113]">
       <div className="max-w-[1120px] mx-auto">
-        <span className="inline-block text-[10px] sm:text-[11px] font-body font-bold uppercase tracking-[1.8px] text-gold-500 mb-4 sm:mb-5">
+        <span className="inline-block text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-[1.8px] text-accent-1 dark:text-primary mb-4 sm:mb-5">
           The problem
         </span>
 
-        <h2 className="font-display text-[24px] sm:text-[28px] md:text-[36px] text-[#0A0A18] dark:text-[#F0F0F3] leading-[1.1] tracking-[-0.02em] max-w-[520px]">
+        <h2 className="font-sans font-bold text-[24px] sm:text-[28px] md:text-[36px] text-content-primary dark:text-[#F0F0F3] leading-[1.1] tracking-[-0.02em] max-w-[520px]">
           Planning events in Nigeria shouldn't feel like a gamble.
         </h2>
 
@@ -49,15 +49,15 @@ export default function Problem() {
           {problems.map((item, i) => (
             <div
               key={i}
-              className="bg-white dark:bg-[#18181B] rounded-[12px] sm:rounded-[16px] p-5 sm:p-6 md:p-8 border border-[#E5E5EA] dark:border-[#2A2A2E] shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-all duration-200"
+              className="bg-surface dark:bg-[#18181B] rounded-[12px] sm:rounded-[16px] p-5 sm:p-6 md:p-8 border border-border dark:border-[#2A2A2E] shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_2px_12px_rgba(0,0,0,0.2)] transition-all duration-200"
             >
-              <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-[8px] sm:rounded-[10px] bg-forest-50 dark:bg-forest-800/20 text-forest-800 dark:text-forest-400 flex items-center justify-center mb-4 sm:mb-6">
+              <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-[8px] sm:rounded-[10px] bg-accent-1/10 dark:bg-primary/15 text-accent-1 dark:text-primary flex items-center justify-center mb-4 sm:mb-6">
                 {item.icon}
               </div>
-              <h3 className="font-heading font-semibold text-[14px] sm:text-[15px] text-[#0A0A18] dark:text-[#E8E8ED] mb-2 sm:mb-2.5 leading-[1.35]">
+              <h3 className="font-sans font-semibold text-[14px] sm:text-[15px] text-content-primary dark:text-[#E8E8ED] mb-2 sm:mb-2.5 leading-[1.35]">
                 {item.title}
               </h3>
-              <p className="text-[13px] sm:text-[14px] text-[#6B6B76] dark:text-[#8B8B96] font-body leading-[1.6] sm:leading-[1.65]">
+              <p className="text-[13px] sm:text-[14px] text-content-secondary dark:text-[#8B8B96] font-sans leading-[1.6] sm:leading-[1.65]">
                 {item.description}
               </p>
             </div>

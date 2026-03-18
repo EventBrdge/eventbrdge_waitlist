@@ -3,7 +3,7 @@ const steps = [
     number: '01',
     title: 'Create your event brief.',
     description:
-      'Tell us what you are planning -- wedding, birthday, burial, or anything else. We match you with vetted professionals.',
+      'Tell us what you are planning. Wedding, birthday, burial, or anything else. We match you with vetted professionals.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="5" y="3" width="18" height="22" rx="2" />
@@ -44,13 +44,13 @@ const steps = [
 
 export default function Solution() {
   return (
-    <section className="py-[56px] sm:py-[72px] md:py-[96px] lg:py-[112px] px-5 sm:px-6 lg:px-8 bg-white dark:bg-[#0C0C0E]">
+    <section className="py-[56px] sm:py-[72px] md:py-[96px] lg:py-[112px] px-5 sm:px-6 lg:px-8 bg-surface dark:bg-[#0C0C0E]">
       <div className="max-w-[1120px] mx-auto">
-        <span className="inline-block text-[10px] sm:text-[11px] font-body font-bold uppercase tracking-[1.8px] text-gold-500 mb-4 sm:mb-5">
+        <span className="inline-block text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-[1.8px] text-accent-1 dark:text-primary mb-4 sm:mb-5">
           How it works
         </span>
 
-        <h2 className="font-display text-[24px] sm:text-[28px] md:text-[36px] text-[#0A0A18] dark:text-[#F0F0F3] leading-[1.1] tracking-[-0.02em] max-w-[520px]">
+        <h2 className="font-sans font-bold text-[24px] sm:text-[28px] md:text-[36px] text-content-primary dark:text-[#F0F0F3] leading-[1.1] tracking-[-0.02em] max-w-[520px]">
           From brief to celebration, in three steps.
         </h2>
 
@@ -58,19 +58,19 @@ export default function Solution() {
           {steps.map((step) => (
             <div key={step.number} className="relative">
               {/* Icon box */}
-              <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-[10px] sm:rounded-[12px] bg-[#F7F7F7] dark:bg-[#18181B] border border-[#E5E5EA] dark:border-[#2A2A2E] text-forest-800 dark:text-forest-400 flex items-center justify-center mb-4 sm:mb-6">
+              <div className="w-11 sm:w-12 h-11 sm:h-12 rounded-[10px] sm:rounded-[12px] bg-surface-alt dark:bg-[#18181B] border border-border dark:border-[#2A2A2E] text-accent-1 dark:text-primary flex items-center justify-center mb-4 sm:mb-6">
                 {step.icon}
               </div>
 
-              <span className="font-heading text-[10px] sm:text-[10px] font-bold text-gold-500 tracking-[1.5px] uppercase">
+              <span className="font-sans text-[10px] font-bold text-accent-1 dark:text-primary tracking-[1.5px] uppercase">
                 Step {step.number}
               </span>
 
-              <h3 className="font-heading font-semibold text-[14px] sm:text-[15px] text-[#0A0A18] dark:text-[#E8E8ED] mt-2 sm:mt-2.5 mb-2 sm:mb-2.5 leading-[1.35]">
+              <h3 className="font-sans font-semibold text-[14px] sm:text-[15px] text-content-primary dark:text-[#E8E8ED] mt-2 sm:mt-2.5 mb-2 sm:mb-2.5 leading-[1.35]">
                 {step.title}
               </h3>
 
-              <p className="text-[13px] sm:text-[14px] text-[#6B6B76] dark:text-[#8B8B96] font-body leading-[1.6] sm:leading-[1.65]">
+              <p className="text-[13px] sm:text-[14px] text-content-secondary dark:text-[#8B8B96] font-sans leading-[1.6] sm:leading-[1.65]">
                 {step.description}
               </p>
             </div>

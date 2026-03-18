@@ -1,28 +1,52 @@
+import { useState, useEffect } from 'react'
+
 export default function Navbar({ dark, toggleDark }) {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 sm:pt-4 px-3 sm:px-4">
       <nav
-        className="flex items-center gap-1.5 sm:gap-2 h-[48px] sm:h-[52px] px-1.5 sm:px-2 rounded-full border border-[#E5E5EA] dark:border-[#2A2A2E] bg-white/80 dark:bg-[#1A1A1E]/80 backdrop-blur-xl shadow-[0_2px_16px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-colors duration-300 max-w-full"
+        className="flex items-center gap-1.5 sm:gap-2 h-[48px] sm:h-[52px] px-1.5 sm:px-2 rounded-full border border-border dark:border-[#2A2A2E] bg-white/80 dark:bg-[#1A1A1E]/80 backdrop-blur-xl shadow-[0_2px_16px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_16px_rgba(0,0,0,0.3)] transition-all duration-300 max-w-full"
         aria-label="Main navigation"
       >
         {/* Logo */}
-        <a href="/" className="flex items-center gap-1.5 pl-2.5 sm:pl-3 pr-2 sm:pr-4 shrink-0">
-          <div className="w-[24px] h-[24px] sm:w-[26px] sm:h-[26px] rounded-[6px] sm:rounded-[7px] bg-forest-800 dark:bg-gold-500 flex items-center justify-center">
-            <span className="text-[10px] sm:text-[11px] font-heading font-bold text-white dark:text-[#0C0C0E] leading-none">E</span>
-          </div>
-          <span className="hidden sm:inline font-heading font-bold text-[15px] text-[#0A0A18] dark:text-[#E8E8ED] tracking-[-0.02em]">
+        <a href="/" className="flex items-center gap-1.5 pl-2.5 sm:pl-3 pr-2 sm:pr-4 shrink-0 overflow-hidden">
+          <img
+            src="/logo-icon.png"
+            alt="EventBridge"
+            className="w-[24px] h-[24px] sm:w-[26px] sm:h-[26px] dark:hidden shrink-0"
+          />
+          <img
+            src="/logo-icon-primary.png"
+            alt="EventBridge"
+            className="w-[24px] h-[24px] sm:w-[26px] sm:h-[26px] hidden dark:block shrink-0"
+          />
+          <span
+            className={`hidden sm:inline font-sans font-bold text-[15px] text-content-primary dark:text-[#E8E8ED] tracking-[-0.02em] whitespace-nowrap transition-all duration-300 ease-in-out origin-left ${
+              scrolled
+                ? 'opacity-0 max-w-0 scale-x-0 ml-0'
+                : 'opacity-100 max-w-[120px] scale-x-100 ml-0'
+            }`}
+          >
             EventBridge
           </span>
         </a>
 
         {/* Separator */}
-        <div className="w-px h-4 sm:h-5 bg-[#E5E5EA] dark:bg-[#2A2A2E]" />
+        <div className="w-px h-4 sm:h-5 bg-border dark:bg-[#2A2A2E]" />
 
         {/* Dark mode toggle */}
         <button
           onClick={toggleDark}
           aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-          className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-[#6B6B76] dark:text-[#8B8B96] hover:bg-[#F0F0F3] dark:hover:bg-[#2A2A2E] transition-colors duration-150 cursor-pointer shrink-0"
+          className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-content-secondary dark:text-[#8B8B96] hover:bg-surface-muted dark:hover:bg-[#2A2A2E] transition-colors duration-150 cursor-pointer shrink-0"
         >
           {dark ? (
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -46,7 +70,7 @@ export default function Navbar({ dark, toggleDark }) {
         {/* CTA */}
         <a
           href="#waitlist"
-          className="flex items-center h-8 sm:h-9 px-3 sm:px-4 rounded-full bg-forest-800 dark:bg-gold-500 text-white dark:text-[#0C0C0E] text-[12px] sm:text-[13px] font-body font-semibold hover:opacity-90 transition-opacity duration-150 whitespace-nowrap shrink-0"
+          className="flex items-center h-8 sm:h-9 px-3 sm:px-4 rounded-full bg-accent-1 dark:bg-primary text-white text-[12px] sm:text-[13px] font-sans font-semibold hover:opacity-90 transition-opacity duration-150 whitespace-nowrap shrink-0"
         >
           <span className="sm:hidden">Access</span>
           <span className="hidden sm:inline">Request Access</span>

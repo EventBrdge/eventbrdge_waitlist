@@ -58,24 +58,24 @@ export default function WaitlistForm({ variant = 'default' }) {
   }
 
   const toggleActive = inv
-    ? 'bg-white dark:bg-gold-500 text-forest-800 dark:text-[#0C0C0E] shadow-sm'
-    : 'bg-forest-800 dark:bg-gold-500 text-white dark:text-[#0C0C0E] shadow-sm'
+    ? 'bg-white dark:bg-primary text-accent-1 dark:text-[#0C0C0E] shadow-sm'
+    : 'bg-accent-1 dark:bg-primary text-white dark:text-[#0C0C0E] shadow-sm'
 
   const toggleInactive = inv
     ? 'text-white/60 dark:text-[#8B8B96] hover:text-white/80 dark:hover:text-[#E8E8ED]'
-    : 'text-[#6B6B76] dark:text-[#8B8B96] hover:text-[#0A0A18] dark:hover:text-[#E8E8ED]'
+    : 'text-content-secondary dark:text-[#8B8B96] hover:text-content-primary dark:hover:text-[#E8E8ED]'
 
   const toggleTrack = inv
     ? 'bg-white/10 dark:bg-[#111113]'
-    : 'bg-[#F0F0F3] dark:bg-[#1A1A1E]'
+    : 'bg-surface-muted dark:bg-[#1A1A1E]'
 
   const inputClass = inv
-    ? 'w-full px-3.5 sm:px-4 py-[11px] sm:py-[12px] text-[13px] sm:text-[14px] font-body rounded-[10px] sm:rounded-[12px] bg-white/10 dark:bg-[#111113] text-white dark:text-[#E8E8ED] placeholder-white/40 dark:placeholder-[#555560] border border-white/20 dark:border-[#2A2A2E] outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-150'
-    : 'w-full px-3.5 sm:px-4 py-[11px] sm:py-[12px] text-[13px] sm:text-[14px] font-body rounded-[10px] sm:rounded-[12px] bg-white dark:bg-[#1A1A1E] text-[#0A0A18] dark:text-[#E8E8ED] placeholder-[#A0A0AA] dark:placeholder-[#555560] border border-[#E5E5EA] dark:border-[#2A2A2E] shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:shadow-none outline-none focus:border-forest-800 dark:focus:border-gold-500 focus:ring-2 focus:ring-forest-800/10 dark:focus:ring-gold-500/20 transition-all duration-150'
+    ? 'w-full px-3.5 sm:px-4 py-[11px] sm:py-[12px] text-[13px] sm:text-[14px] font-sans rounded-[10px] sm:rounded-[12px] bg-white/10 dark:bg-[#111113] text-white dark:text-[#E8E8ED] placeholder-white/40 dark:placeholder-[#555560] border border-white/20 dark:border-[#2A2A2E] outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150'
+    : 'w-full px-3.5 sm:px-4 py-[11px] sm:py-[12px] text-[13px] sm:text-[14px] font-sans rounded-[10px] sm:rounded-[12px] bg-surface dark:bg-[#1A1A1E] text-content-primary dark:text-[#E8E8ED] placeholder-content-tertiary dark:placeholder-[#555560] border border-border dark:border-[#2A2A2E] shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:shadow-none outline-none focus:border-accent-1 dark:focus:border-primary focus:ring-2 focus:ring-accent-1/10 dark:focus:ring-primary/20 transition-all duration-150'
 
   const submitClass = inv
-    ? 'w-full sm:w-auto px-5 sm:px-6 py-[11px] sm:py-[12px] bg-gold-500 text-forest-900 dark:text-[#0C0C0E] text-[13px] sm:text-[14px] font-body font-semibold rounded-[10px] sm:rounded-[12px] hover:opacity-90 active:scale-[0.98] transition-all duration-150 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:ring-offset-2 focus:ring-offset-forest-800 dark:focus:ring-offset-[#18181B] whitespace-nowrap'
-    : 'w-full sm:w-auto px-5 sm:px-6 py-[11px] sm:py-[12px] bg-forest-800 dark:bg-gold-500 text-white dark:text-[#0C0C0E] text-[13px] sm:text-[14px] font-body font-semibold rounded-[10px] sm:rounded-[12px] shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:opacity-90 active:scale-[0.98] transition-all duration-150 cursor-pointer focus:outline-none focus:ring-2 focus:ring-forest-800/30 dark:focus:ring-gold-500/30 focus:ring-offset-2 dark:focus:ring-offset-[#0C0C0E] whitespace-nowrap'
+    ? 'w-full sm:w-auto px-5 sm:px-6 py-[11px] sm:py-[12px] bg-primary text-white text-[13px] sm:text-[14px] font-sans font-semibold rounded-[10px] sm:rounded-[12px] hover:opacity-90 active:scale-[0.98] transition-all duration-150 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 focus:ring-offset-accent-1 dark:focus:ring-offset-[#18181B] whitespace-nowrap'
+    : 'w-full sm:w-auto px-5 sm:px-6 py-[11px] sm:py-[12px] bg-accent-1 dark:bg-primary text-white dark:text-[#0C0C0E] text-[13px] sm:text-[14px] font-sans font-semibold rounded-[10px] sm:rounded-[12px] shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:opacity-90 active:scale-[0.98] transition-all duration-150 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent-1/30 dark:focus:ring-primary/30 focus:ring-offset-2 dark:focus:ring-offset-[#0C0C0E] whitespace-nowrap'
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-[440px]" noValidate>
@@ -93,7 +93,7 @@ export default function WaitlistForm({ variant = 'default' }) {
             role="radio"
             aria-checked={role === 'host'}
             onClick={() => setRole('host')}
-            className={`flex-1 py-[9px] sm:py-[10px] px-3 sm:px-4 text-[12px] sm:text-[13px] font-body font-semibold rounded-full transition-all duration-200 cursor-pointer ${role === 'host' ? toggleActive : toggleInactive
+            className={`flex-1 py-[9px] sm:py-[10px] px-3 sm:px-4 text-[12px] sm:text-[13px] font-sans font-semibold rounded-full transition-all duration-200 cursor-pointer ${role === 'host' ? toggleActive : toggleInactive
               }`}
           >
             I'm a Host
@@ -103,7 +103,7 @@ export default function WaitlistForm({ variant = 'default' }) {
             role="radio"
             aria-checked={role === 'planner'}
             onClick={() => setRole('planner')}
-            className={`flex-1 py-[9px] sm:py-[10px] px-3 sm:px-4 text-[12px] sm:text-[13px] font-body font-semibold rounded-full transition-all duration-200 cursor-pointer ${role === 'planner' ? toggleActive : toggleInactive
+            className={`flex-1 py-[9px] sm:py-[10px] px-3 sm:px-4 text-[12px] sm:text-[13px] font-sans font-semibold rounded-full transition-all duration-200 cursor-pointer ${role === 'planner' ? toggleActive : toggleInactive
               }`}
           >
             I'm an Event Planner
@@ -131,7 +131,7 @@ export default function WaitlistForm({ variant = 'default' }) {
         </div>
 
         {error && (
-          <p id={`error-${variant}`} className="mt-2.5 sm:mt-3 text-[12px] sm:text-[13px] text-danger font-body" role="alert">
+          <p id={`error-${variant}`} className="mt-2.5 sm:mt-3 text-[12px] sm:text-[13px] text-error font-sans" role="alert">
             {error}
           </p>
         )}
